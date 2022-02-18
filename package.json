@@ -1,13 +1,5 @@
 {
   "name": "npm-automation-az-test",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/albertozaranza/NpmAutomation.git"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
