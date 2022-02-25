@@ -3,10 +3,14 @@ name: "🚀 publish"
 on:
   push:
     branches:
-      - main
+      - release/*
+  # pull_request:
+  #   branches:
+  #     - main
 
 jobs:
   release:
+    if: ${{ startsWith("release/", github.head_ref) }}
     name: 🚀 publish
     runs-on: ubuntu-latest
     steps:
@@ -17,7 +21,7 @@ jobs:
         with:
           node-version: 14
           registry-url: "https://registry.npmjs.org"
-      - name: 🚀 publish
-        run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    #   - name: 🚀 publish
+    #     run: npm publish --access public
+    #     env:
+    #       NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
