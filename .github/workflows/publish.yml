@@ -26,6 +26,7 @@ jobs:
         with:
           script: |
             const headRef = github.head_ref
+            console.log(github.head_ref)
             const releaseVersion = headRef.split("release/").join("")
             console.log(releaseVersion)
     #   - name: 🚀 publish
