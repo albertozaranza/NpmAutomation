@@ -25,7 +25,7 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const headRef = github.base_ref
+            const headRef = github.head_ref
             console.log(headRef)
             const releaseVersion = headRef.split("release/").join("")
             console.log(releaseVersion)
