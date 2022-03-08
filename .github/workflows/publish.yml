@@ -25,11 +25,9 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const headRef = github.head_ref
-            const baseRef = github.base_ref
-            console.log("github: ", context.payload.pull_request)
-            console.log("headRef: ", headRef)
-            console.log("baseRef: ", baseRef)
+            const headRef = context.payload.pull_request.head.ref
+            console.log("headRef: ", context.payload.pull_request.head.ref)
+            console.log("baseRef: ", context.payload.pull_request.base.ref)
             const releaseVersion = headRef.split("release/").join("")
             console.log(releaseVersion)
     #   - name: 🚀 publish
