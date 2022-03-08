@@ -10,7 +10,7 @@ on:
 
 jobs:
   release:
-    # if: ${{ startsWith('release/', github.head_ref) }}
+    if: ${{ startsWith('release/', context.payload.pull_request.head.ref) }}
     name: 🚀 publish
     runs-on: ubuntu-latest
     steps:
@@ -26,9 +26,9 @@ jobs:
         with:
           script: |
             const headRef = context.payload.pull_request.head.ref
-            console.log("headRef: ", context.payload.pull_request.head.ref)
-            console.log("baseRef: ", context.payload.pull_request.base.ref)
+
             const releaseVersion = headRef.split("release/").join("")
+
             console.log(releaseVersion)
     #   - name: 🚀 publish
     #     run: npm publish --access public
