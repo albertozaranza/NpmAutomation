@@ -27,7 +27,7 @@ jobs:
           script: |
             const headRef = github.head_ref
             const baseRef = github.base_ref
-            console.log("github: ", github)
+            console.log("github: ", context.payload.pull_request)
             console.log("headRef: ", headRef)
             console.log("baseRef: ", baseRef)
             const releaseVersion = headRef.split("release/").join("")
