@@ -5,12 +5,14 @@ on:
   #   branches:
   #     - release/*
   pull_request:
+    types: [closed]
     branches:
       - main
 
 jobs:
   release:
-    if: ${{ startsWith('release/', github.head_ref) }}
+    # if: github.event.pull_request.merged == true
+    if: startsWith( github.head_ref, 'release/')
     name: 🚀 publish
     runs-on: ubuntu-latest
     steps:
@@ -25,10 +27,18 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const headRef = github.head_ref
+            const headRef = context.payload.pull_request.head.ref
+
             const releaseVersion = headRef.split("release/").join("")
+
             console.log(releaseVersion)
-    #   - name: 🚀 publish
-    #     run: npm publish --access public
-    #     env:
-    #       NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+            process.env.RELEASE_VERSION=releaseVersion
+
+            console.log(process.env.RELEASE_VERSION)
+      - name: 🚀 version
+        run: npm version ${{ RELEASE_VERSION }}
+      # - name: 🚀 publish
+      #   run: npm publish --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
