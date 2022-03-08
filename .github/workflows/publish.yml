@@ -30,6 +30,10 @@ jobs:
             const releaseVersion = headRef.split("release/").join("")
 
             console.log(releaseVersion)
+
+            $RELEASE_VERSION=${{releaseVersion}}
+
+            console.log(process.env.RELEASE_VERSION)
       # - name: 🚀 version
       #   run: npm version (releaseVersion)
       # - name: 🚀 publish
