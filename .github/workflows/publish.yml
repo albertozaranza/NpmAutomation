@@ -29,8 +29,10 @@ jobs:
 
             const releaseVersion = headRef.split("release/").join("")
 
-            console.log(releaseVersion, process.env.GITHUB_HEAD_REF)
-    #   - name: 🚀 publish
-    #     run: npm publish --access public
-    #     env:
-    #       NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+            console.log(releaseVersion)
+      # - name: 🚀 version
+      #   run: npm version (releaseVersion)
+      # - name: 🚀 publish
+      #   run: npm publish --access public
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
