@@ -10,7 +10,7 @@ on:
 
 jobs:
   release:
-    if: ${{ startsWith('release/', github.head_ref) }}
+    # if: ${{ startsWith('release/', github.head_ref) }}
     name: 🚀 publish
     runs-on: ubuntu-latest
     steps:
