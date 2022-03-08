@@ -1,9 +1,6 @@
 name: "🚀 publish"
 
 on:
-  # push:
-  #   branches:
-  #     - release/*
   pull_request:
     types: [closed]
     branches:
@@ -11,7 +8,6 @@ on:
 
 jobs:
   release:
-    # if: github.event.pull_request.merged == true
     if: startsWith( github.head_ref, 'release/')
     name: 🚀 publish
     runs-on: ubuntu-latest
