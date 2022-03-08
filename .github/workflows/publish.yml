@@ -29,7 +29,7 @@ jobs:
 
             const releaseVersion = headRef.split("release/").join("")
 
-            console.log(releaseVersion, env.process.GITHUB_HEAD_REF)
+            console.log(releaseVersion, process.env.GITHUB_HEAD_REF)
     #   - name: 🚀 publish
     #     run: npm publish --access public
     #     env:
