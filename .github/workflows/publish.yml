@@ -26,8 +26,10 @@ jobs:
         with:
           script: |
             const headRef = github.head_ref
-            console.log(github)
-            console.log(headRef)
+            const baseRef = github.base_ref
+            console.log("github: ", github)
+            console.log("headRef: ", headRef)
+            console.log("baseRef: ", baseRef)
             const releaseVersion = headRef.split("release/").join("")
             console.log(releaseVersion)
     #   - name: 🚀 publish
