@@ -32,10 +32,12 @@ jobs:
             core.exportVariable("RELEASE_VERSION", releaseVersion)
 
             console.log(process.env.RELEASE_VERSION)
+      - name: Configure git
+        run: |
+          git config user.name "$(git log -n 1 --pretty=format:%an)"
+          git config user.email "$(git log -n 1 --pretty=format:%ae)"
       - name: 🚀 version
         run: npm version ${{ env.RELEASE_VERSION }}
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: 🚀 publish
       #   run: npm publish --access public
       #   env:
