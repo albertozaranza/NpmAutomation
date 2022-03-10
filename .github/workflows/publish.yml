@@ -30,6 +30,8 @@ jobs:
             core.exportVariable("RELEASE_VERSION", releaseVersion)
       - name: Configure git
         run: |
+          # get the username and email of the user who made the last commit
+
           git config user.name "$(git log -n 1 --pretty=format:%an)"
           git config user.email "$(git log -n 1 --pretty=format:%ae)"
       - name: 🚀 version
