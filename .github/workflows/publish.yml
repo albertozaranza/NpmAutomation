@@ -34,6 +34,8 @@ jobs:
             console.log(process.env.RELEASE_VERSION)
       - name: 🚀 version
         run: npm version ${{ env.RELEASE_VERSION }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: 🚀 publish
       #   run: npm publish --access public
       #   env:
