@@ -32,8 +32,8 @@ jobs:
             core.exportVariable("RELEASE_VERSION", releaseVersion)
 
             console.log(process.env.RELEASE_VERSION)
-      # - name: 🚀 version
-      #   run: npm version ${{ RELEASE_VERSION }}
+      - name: 🚀 version
+        run: npm version ${{ RELEASE_VERSION }}
       # - name: 🚀 publish
       #   run: npm publish --access public
       #   env:
