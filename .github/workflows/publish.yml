@@ -23,8 +23,6 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            const core = require("@actions/core")
-
             const headRef = context.payload.pull_request.head.ref
 
             const releaseVersion = headRef.split("release/").join("")
