@@ -1,14 +1,14 @@
 name: "🚀 publish"
 
-#test
 on:
   pull_request:
+    types: [closed]
     branches:
       - main
 
 jobs:
   release:
-    if: startsWith( github.head_ref, 'release/') && github.event.pull_request.merged == true
+    if: startsWith(github.head_ref, 'release/') && github.event.pull_request.merged == true
     name: 🚀 publish
     runs-on: ubuntu-latest
     steps:
