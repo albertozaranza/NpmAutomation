@@ -1,18 +1,13 @@
 name: "🚀 publish"
 
 on:
-  # push:
-  #   branches:
-  #     - release/*
   pull_request:
-    types: [closed]
     branches:
       - main
 
 jobs:
   release:
-    # if: github.event.pull_request.merged == true
-    if: startsWith( github.head_ref, 'release/')
+    if: startsWith( github.head_ref, 'release/') && github.event.pull_request.merged == true
     name: 🚀 publish
     runs-on: ubuntu-latest
     steps:
@@ -31,13 +26,19 @@ jobs:
 
             const releaseVersion = headRef.split("release/").join("")
 
-            console.log(releaseVersion)
+            core.exportVariable("RELEASE_VERSION", releaseVersion)
+      - name: Configure git
+        run: |
+          # get the username and email of the user who made the last commit
 
-            process.env.RELEASE_VERSION=releaseVersion
-
-            console.log(process.env.RELEASE_VERSION)
+          git config user.name "$(git log -n 1 --pretty=format:%an)"
+          git config user.email "$(git log -n 1 --pretty=format:%ae)"
       - name: 🚀 version
-        run: npm version ${{ RELEASE_VERSION }}
+        run: npm version ${{ env.RELEASE_VERSION }}
+      - name: Push git tags
+        run: |
+          git tag ${{ env.RELEASE_VERSION }}
+          git push origin ${{ env.RELEASE_VERSION }}
       # - name: 🚀 publish
       #   run: npm publish --access public
       #   env:
