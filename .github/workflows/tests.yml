@@ -1,9 +1,6 @@
 name: "🟢 tests"
 
-on:
-  push:
-    branches:
-      - release/*
+on: push
 
 jobs:
   tests:
