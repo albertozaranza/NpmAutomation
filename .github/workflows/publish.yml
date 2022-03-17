@@ -1,6 +1,5 @@
 name: "🚀 publish"
 
-#test
 on:
   pull_request:
     types: [closed]
